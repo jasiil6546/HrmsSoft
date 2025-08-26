@@ -1,25 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Check-in
-export const checkIn = createAsyncThunk(
-  "attendance/checkIn",
-  async (user_id, { rejectWithValue }) => {
-    try {
-      const response = await axios.post("/attendance/checkin", { user_id });
-      return response.data;
-    } catch (err) {
-      return rejectWithValue(err.response?.data?.error || "Error checking in");
-    }
+export const checkIn = createAsyncThunk("attendance/checkIn", async (user_id, thunkAPI) => {
+  try {
+    const res = await axios.post("http://localhost:5000/attendance/checkin", { user_id });
+    return res.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response?.data?.message || "Error checking in");
   }
-);
-
+});
 // Check-out
 export const checkOut = createAsyncThunk(
   "attendance/checkOut",
   async (user_id, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/attendance/checkout", { user_id });
+      const response = await axios.post("http://localhost:5000/attendance/checkout", { user_id });
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || "Error checking out");

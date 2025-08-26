@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ForgotPasswordModal from "./Forgetpass";
+import { useDispatch, useSelector } from "react-redux";
 import {
   AppBar,
   Toolbar,
@@ -16,36 +16,42 @@ import {
   TextField,
   CircularProgress,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+
+import ForgotPasswordModal from "./Forgetpass";
 import ChangePasswordModal from "./changepass";
 import CheckInOut from "./checkin";
+
+import { changePassword, forgotPassword, resetPassword } from "../../redux/Slice/passSlice";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { loading, error, message } = useSelector((state) => state.pass);
+  
+  // Get current logged-in user from Redux store
+  const currentUser = useSelector((state) => state.auth.user);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
-  // Change Password modal
+  // For Change Password modal
   const [openChange, setOpenChange] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Forgot Password (OTP Request) modal
+  // For Forgot Password (OTP Request) modal
   const [openForgot, setOpenForgot] = useState(false);
   const [email, setEmail] = useState("");
 
-  // Reset Password with OTP modal
+  // For Reset Password with OTP modal
   const [openReset, setOpenReset] = useState(false);
   const [otp, setOtp] = useState("");
   const [resetPasswordValue, setResetPasswordValue] = useState("");
 
-  // Menu handlers
+  // Menu open/close handlers
   const handleMenu = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  // Change password
+  // Handle change password action
   const handleChangePassword = () => {
     if (newPassword !== confirmPassword) {
       alert("Passwords do not match");
@@ -57,7 +63,7 @@ const Dashboard = () => {
     setConfirmPassword("");
   };
 
-  // Forgot password (send OTP)
+  // Handle forgot password OTP request
   const handleForgotPassword = () => {
     if (!email) {
       alert("Enter your email!");
@@ -69,7 +75,7 @@ const Dashboard = () => {
     });
   };
 
-  // Reset password with OTP
+  // Handle reset password with OTP
   const handleResetPassword = () => {
     if (!otp || !resetPasswordValue) {
       alert("Fill all fields");
@@ -82,25 +88,19 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* Header */}
       <AppBar position="static">
+        {/* Pass user id safely to CheckInOut */}
+        <CheckInOut user_id={currentUser?.id} />
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             HRMS
           </Typography>
-            
-                  <CheckInOut userEmail="user@example.com" />
-           
-          {/* Avatar Menu */}
           <IconButton color="inherit" onClick={handleMenu}>
-            <Avatar alt="User">U</Avatar>
-            
+            <Avatar alt={currentUser?.name || "User"}>
+              {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : "U"}
+            </Avatar>
           </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
             <MenuItem
               onClick={() => {
                 setOpenChange(true);
@@ -123,22 +123,22 @@ const Dashboard = () => {
 
       {/* Change Password Modal */}
       <ChangePasswordModal
-  open={openChange}
-  onClose={() => setOpenChange(false)}
-  oldPassword={oldPassword}
-  newPassword={newPassword}
-  confirmPassword={confirmPassword}
-  setOldPassword={setOldPassword}
-  setNewPassword={setNewPassword}
-  setConfirmPassword={setConfirmPassword}
-  loading={loading}
-  error={error}
-  message={message}
-  handleChangePassword={handleChangePassword}
-/>
+        open={openChange}
+        onClose={() => setOpenChange(false)}
+        oldPassword={oldPassword}
+        newPassword={newPassword}
+        confirmPassword={confirmPassword}
+        setOldPassword={setOldPassword}
+        setNewPassword={setNewPassword}
+        setConfirmPassword={setConfirmPassword}
+        loading={loading}
+        error={error}
+        message={message}
+        handleChangePassword={handleChangePassword}
+      />
 
       {/* Forgot Password Modal */}
-        <ForgotPasswordModal
+      <ForgotPasswordModal
         open={openForgot}
         onClose={() => setOpenForgot(false)}
         email={email}
@@ -171,7 +171,7 @@ const Dashboard = () => {
           />
           {loading && <CircularProgress size={24} />}
           {error && <Typography color="error">{error}</Typography>}
-          {message && <Typography color="green">{message}</Typography>}
+          {message && <Typography color="success.main">{message}</Typography>}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenReset(false)}>Cancel</Button>
@@ -185,9 +185,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
-
-
 
 

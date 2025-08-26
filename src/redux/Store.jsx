@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
      auth: authReducer,
      pass: passReducer,
-     atten:AttenReducer,
+    attendance: AttenReducer,
   }, 
 });
 
