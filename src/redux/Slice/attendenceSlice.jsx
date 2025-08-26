@@ -1,33 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import dayjs from "dayjs";
 
-const today = dayjs().format("YYYY-MM-DD");
-
-// Fetch today's attendance status
-export const fetchAttendance = createAsyncThunk(
-  "attendance/fetchAttendance",
-  async (email) => {
-    const res = await axios.get(`http://localhost:5000/status?email=${email}&date=${today}`);
-    return res.data;
-  }
-);
-
-// Check-In action
+// Check-in
 export const checkIn = createAsyncThunk(
   "attendance/checkIn",
-  async (email) => {
-    const res = await axios.post("http://localhost:5000/checkin", { email });
-    return res.data;
+  async (user_id, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/attendance/checkin", { user_id });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || "Error checking in");
+    }
   }
 );
 
-// Check-Out action
+// Check-out
 export const checkOut = createAsyncThunk(
   "attendance/checkOut",
-  async (email) => {
-    const res = await axios.post("http://localhost:5000/checkout", { email });
-    return res.data;
+  async (user_id, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/attendance/checkout", { user_id });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || "Error checking out");
+    }
   }
 );
 
@@ -39,28 +35,47 @@ const attendanceSlice = createSlice({
     checkOutTime: null,
     loading: false,
     error: null,
+    message: null,
   },
-  reducers: {},
+  reducers: {
+    resetMessage: (state) => {
+      state.message = null;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAttendance.fulfilled, (state, action) => {
-        if (action.payload.check_in_time) {
-          state.checkedIn = !action.payload.check_out_time;
-          state.checkInTime = dayjs(action.payload.check_in_time).format("HH:mm:ss");
-          if (action.payload.check_out_time)
-            state.checkOutTime = dayjs(action.payload.check_out_time).format("HH:mm:ss");
-        }
+      // Check-in
+      .addCase(checkIn.pending, (state) => {
+        state.loading = true;
       })
       .addCase(checkIn.fulfilled, (state, action) => {
+        state.loading = false;
         state.checkedIn = true;
-        state.checkInTime = dayjs(action.payload.checkInTime).format("HH:mm:ss");
+        state.checkInTime = new Date().toLocaleTimeString();
         state.checkOutTime = null;
+        state.message = action.payload.message;
+      })
+      .addCase(checkIn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // Check-out
+      .addCase(checkOut.pending, (state) => {
+        state.loading = true;
       })
       .addCase(checkOut.fulfilled, (state, action) => {
+        state.loading = false;
         state.checkedIn = false;
-        state.checkOutTime = dayjs(action.payload.checkOutTime).format("HH:mm:ss");
+        state.checkOutTime = new Date().toLocaleTimeString();
+        state.message = action.payload.message;
+      })
+      .addCase(checkOut.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
 
+export const { resetMessage } = attendanceSlice.actions;
 export default attendanceSlice.reducer;

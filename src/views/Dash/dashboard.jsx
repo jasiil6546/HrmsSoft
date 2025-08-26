@@ -17,12 +17,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changePassword,
-  forgotPassword,
-  resetPassword,
-  clearState,
-} from "../../redux/Slice/passSlice";
+import ChangePasswordModal from "./changepass";
 import CheckInOut from "./checkin";
 
 const Dashboard = () => {
@@ -127,44 +122,20 @@ const Dashboard = () => {
       </AppBar>
 
       {/* Change Password Modal */}
-      <Dialog open={openChange} onClose={() => setOpenChange(false)}>
-        <DialogTitle>Change Password</DialogTitle>
-        <DialogContent>
-          <TextField
-            margin="dense"
-            label="Old Password"
-            type="password"
-            fullWidth
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            label="New Password"
-            type="password"
-            fullWidth
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            label="Confirm Password"
-            type="password"
-            fullWidth
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          {loading && <CircularProgress size={24} />}
-          {error && <Typography color="error">{error}</Typography>}
-          {message && <Typography color="green">{message}</Typography>}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenChange(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleChangePassword}>
-            Update
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ChangePasswordModal
+  open={openChange}
+  onClose={() => setOpenChange(false)}
+  oldPassword={oldPassword}
+  newPassword={newPassword}
+  confirmPassword={confirmPassword}
+  setOldPassword={setOldPassword}
+  setNewPassword={setNewPassword}
+  setConfirmPassword={setConfirmPassword}
+  loading={loading}
+  error={error}
+  message={message}
+  handleChangePassword={handleChangePassword}
+/>
 
       {/* Forgot Password Modal */}
         <ForgotPasswordModal

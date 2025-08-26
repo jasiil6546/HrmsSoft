@@ -2,14 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Change Password
+
 export const changePassword = createAsyncThunk(
   "pass/changePassword",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await axios.post("/pass/change-password", data);
+      const token = localStorage.getItem("token"); // get JWT
+      const res = await axios.post("/pass/change-password", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data.error || "Error");
+      return rejectWithValue(err.response?.data.message || "Error");
     }
   }
 );
@@ -48,14 +52,13 @@ const passSlice = createSlice({
     error: "",
   },
   reducers: {
-    clearState: (state) => {
+    resetMessage: (state) => {
       state.message = "";
       state.error = "";
     },
   },
   extraReducers: (builder) => {
     builder
-      // Change Password
       .addCase(changePassword.pending, (state) => {
         state.loading = true;
         state.error = "";
@@ -68,6 +71,7 @@ const passSlice = createSlice({
       .addCase(changePassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+ 
       })
       // Forgot Password
       .addCase(forgotPassword.pending, (state) => {
@@ -100,6 +104,6 @@ const passSlice = createSlice({
   },
 });
 
-export const { clearState } = passSlice.actions;
+export const { resetMessage } = passSlice.actions;
 export default passSlice.reducer;
 

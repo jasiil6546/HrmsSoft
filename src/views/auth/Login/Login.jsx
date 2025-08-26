@@ -42,18 +42,26 @@ const Login = () => {
       .then((res) => {
         alert(`Welcome ${res.user.name || formData.email}`);
 
-        // Store token
+        // Save token
         if (rememberMe) localStorage.setItem("token", res.token);
         else sessionStorage.setItem("token", res.token);
 
-        // Navigate to dashboard
-        navigate("/dashboard");
+        // Role-based navigation using role_id
+        const roleId = res.user.role_id;
+        if (roleId === 1) {
+          navigate("/admin/dashboard");
+        } else if (roleId === 2) {
+          navigate("/hr/dashboard");
+        } else if (roleId === 3) {
+          navigate("/manager/dashboard");
+        } else {
+          navigate("/user/dashboard"); // default: Employee
+        }
       })
       .catch((err) => alert(err));
   };
 
   const handleForgotPassword = () => {
-    // Here you’ll call your API to send OTP
     alert("Send OTP to " + formData.email);
   };
 
@@ -167,7 +175,11 @@ const Login = () => {
 
         {/* Remember & Forgot */}
         <Box
-          sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           <FormControlLabel
             control={
@@ -214,7 +226,6 @@ const Login = () => {
           Sign In
         </Button>
 
-        {/* Error */}
         {error && <Typography color="red">{error}</Typography>}
 
         <Typography
@@ -244,3 +255,4 @@ const Login = () => {
 };
 
 export default Login;
+
