@@ -6,4 +6,4 @@ const Mailverification = () => {
   )
 }
 
-export default Mailverification
+export default Mailverification;
