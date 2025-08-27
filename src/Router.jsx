@@ -11,7 +11,20 @@ import { Route, Routes } from "react-router-dom";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/user/*" 
+     <Route path="/*" 
+     element={
+                   <ProfileCompletionCheckRoute>
+                    <InhouseRouter />
+                   </ProfileCompletionCheckRoute>} />
+  <Route
+    path="/auth/*"
+    element={
+      <PublicRoute>
+        <PublicRouter />
+      </PublicRoute>
+    }
+  />
+   <Route path="/user/*" 
       element={
         <ProfileCompletionCheckRoute>
           <InhouseRouter/>
@@ -27,14 +40,6 @@ const Router = () => {
           </ProfileCompletionCheckRoute>
         }
       />
-  <Route
-    path="/auth/*"
-    element={
-      <PublicRoute>
-        <PublicRouter />
-      </PublicRoute>
-    }
-  />
 </Routes>
   );
 };

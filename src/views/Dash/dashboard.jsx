@@ -88,7 +88,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar sx={{color:"#111" , backgroundColor:"#f0ececff" }}position="static">
         {/* Pass user id safely to CheckInOut */}
         <CheckInOut user_id={currentUser?.id} />
         <Toolbar>

@@ -1,83 +1,62 @@
-import React, { useEffect, useState } from "react";
+// src/components/CheckInOutHeader.jsx
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Box, Paper, Typography, Alert } from "@mui/material";
-import { checkIn, checkOut, resetMessage } from "../../redux/Slice/attendenceSlice";
+import { Button, Typography, Chip, Box, Alert } from "@mui/material";
+import { checkIn, checkOut, fetchAttendance, resetMessage } from "../../redux/Slice/attendenceSlice";
 
-function CheckInOut({ user_id }) {
+function formatHMS(totalSeconds) {
+  const h = Math.floor(totalSeconds / 3600).toString().padStart(2, "0");
+  const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, "0");
+  const s = Math.floor(totalSeconds % 60).toString().padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+
+export default function CheckInOutHeader() {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user") || "null") || JSON.parse(sessionStorage.getItem("user") || "null");
+  const user_id = user?.id || user?._id;
 
-  // ✅ must use state.attendance (not atten)
-  const { checkedIn, checkInTime, checkOutTime, loading, error, message } =
-    useSelector((state) => state.attendance);
+  const { checkedIn, lastCheckInTime, totalMinutesToday, loading, error, message } = useSelector(s => s.attendance);
+  const [now, setNow] = useState(Date.now());
 
-  const handleCheckIn = () => {
-    if (!user_id) {
-      alert("User ID not found. Please login again.");
-      return;
-    }
-    dispatch(checkIn(user_id));
-  };
+  // fetch attendance on mount
+  useEffect(() => { if (user_id) dispatch(fetchAttendance(user_id)); }, [dispatch, user_id]);
 
-  const handleCheckOut = () => {
-    if (!user_id) {
-      alert("User ID not found. Please login again.");
-      return;
-    }
-    dispatch(checkOut(user_id));
-  };
+  // live timer tick
+  useEffect(() => {
+    if (!checkedIn) return;
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [checkedIn]);
 
+  // clear messages automatically
   useEffect(() => {
     if (message || error) {
-      const timer = setTimeout(() => dispatch(resetMessage()), 3000);
-      return () => clearTimeout(timer);
+      const t = setTimeout(() => dispatch(resetMessage()), 3000);
+      return () => clearTimeout(t);
     }
   }, [message, error, dispatch]);
 
+  const workedSeconds = useMemo(() => {
+    const finished = (totalMinutesToday || 0) * 60;
+    if (!checkedIn || !lastCheckInTime) return finished;
+    const start = new Date(lastCheckInTime).getTime();
+    return finished + Math.max(0, Math.floor((now - start) / 1000));
+  }, [checkedIn, lastCheckInTime, totalMinutesToday, now]);
+
+  const handleCheckIn = () => { if (user_id) dispatch(checkIn(user_id)); };
+  const handleCheckOut = () => { if (user_id) dispatch(checkOut(user_id)); };
+
   return (
-    <Paper elevation={3} sx={{ maxWidth: 360, mx: "auto", mt: 5, p: 4, textAlign: "center" }}>
-      <Box sx={{ mb: 2 }}>
-        {!checkedIn ? (
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={handleCheckIn}
-            disabled={loading}
-          >
-            {loading ? "Checking in..." : "Check In"}
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleCheckOut}
-            disabled={loading}
-          >
-            {loading ? "Checking out..." : "Check Out"}
-          </Button>
-        )}
-      </Box>
-
-      <Box sx={{ minHeight: 32, mb: 2 }}>
-        {checkedIn && (
-          <Typography color="success.main" fontWeight="bold">
-            Checked in at: <b>{checkInTime}</b>
-          </Typography>
-        )}
-        {!checkedIn && checkOutTime && (
-          <Typography color="info.main" fontWeight="bold">
-            Checked out at: <b>{checkOutTime}</b>
-          </Typography>
-        )}
-      </Box>
-
-      {message && <Alert severity="success" sx={{ mb: 1 }}>{message}</Alert>}
-      {error && <Alert severity="error" sx={{ mb: 1 }}>{error}</Alert>}
-    </Paper>
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt:2 }}>
+      <Chip label={checkedIn ? "Checked In" : "Checked Out"} color={checkedIn ? "success" : "default"} size="small" />
+      <Typography variant="body1" sx={{ fontFamily: "monospace" }}>{formatHMS(workedSeconds)}</Typography>
+      {!checkedIn ? (
+        <Button size="small" variant="contained" onClick={handleCheckIn} disabled={loading}>{loading ? "..." : "In"}</Button>
+      ) : (
+        <Button size="small" variant="contained" color="#000000ff" onClick={handleCheckOut} disabled={loading}>{loading ? "..." : "Out"}</Button>
+      )}
+      {(message || error) && <Alert severity={message ? "success" : "error"} sx={{ ml: 2 }}>{message || error}</Alert>}
+    </Box>
   );
 }
-
-export default CheckInOut;
-
-

@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const authRouter = require("./Models/auth"); // import router
 const passRouter= require("./Models/pass");
-const Attendence= require("./Models/attendance")
+const Attendence= require("./Models/attendance");
+const rolesRouter = require("./Models/roles");
 const app = express();
 
 app.use(cors());
@@ -12,7 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 // Use routes
 app.use("/auth", authRouter)
 app.use("/pass", passRouter);
-app.use("/attendance",Attendence)
+app.use("/attendance",Attendence);
+app.use("/roles", rolesRouter);
 
 app.use((req, res, next) => {
   console.log("➡️ Incoming request:", req.method, req.url);

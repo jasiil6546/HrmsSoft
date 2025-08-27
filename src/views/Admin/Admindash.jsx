@@ -1,9 +1,9 @@
-// src/components/AdminDashboard.jsx
 import React from "react";
-import { AppBar, Toolbar, Typography, Box, Container } from "@mui/material";
+import { Box, AppBar, Toolbar, Typography, Container } from "@mui/material";
+import RoleTable from "../Admin/RoleTable";
 
 const Header = () => (
-  <AppBar position="static">
+  <AppBar position="static" color="inherit" sx={{ bgcolor: "#3635358e" }}>
     <Toolbar>
       <Typography variant="h6">Admin Dashboard</Typography>
     </Toolbar>
@@ -14,7 +14,7 @@ const Footer = () => (
   <Box
     sx={{
       width: "100%",
-      bgcolor: "primary.main",
+      bgcolor: "#3635358e",
       color: "white",
       textAlign: "center",
       p: 2,
@@ -26,20 +26,22 @@ const Footer = () => (
   </Box>
 );
 
-const Body = () => (
-  <Container sx={{ mt: 4, mb: 10 }}>
- 
-  </Container>
-);
-
 const AdminDashboard = () => {
+  const handleEdit = (row) => console.log("Edit role:", row);
+  const handleAdd = () => console.log("Add role");
+
+  const currentUser = "admin@example.com"; // Logged-in user
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Header />
-      <Body />
+      <Container sx={{ mt: 4, mb: 10 }}>
+        <RoleTable onEdit={handleEdit} onAdd={handleAdd} currentUser={currentUser} />
+      </Container>
       <Footer />
     </Box>
   );
 };
 
 export default AdminDashboard;
+
