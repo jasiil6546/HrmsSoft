@@ -15,21 +15,4 @@ connection.connect((error) => {
     }
 });
 
-module.exports = connection; // export only the connection
-
-
-// 
-// const mysql = require("mysql2/promise"); // use promise version
-
-// // Create a pool instead of single connection (better for multiple queries)
-// const db = mysql.createPool({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "huroo",
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0,
-// });
-
-// module.exports = db;
+module.exports = connection; 
