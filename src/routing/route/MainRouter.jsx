@@ -5,7 +5,8 @@ import Dashboard from "../../views/Dash/dashboard";
 import Fof from "../../components/fof";
 import OKRPage from "../../views/Dash/sidebar/okr";
 import Performance from "../../views/Dash/sidebar/Performance";
-import Logout from "../../views/auth/Login/Logout"
+import Logout from "../../views/auth/Login/Logout";
+import Overview from "../../views/Dash/sidetopchild/Overview"
 
 const MainRouter = () => {
   return (
@@ -17,7 +18,7 @@ const MainRouter = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="okr" element={<OKRPage />} />
         <Route path="performance" element={<Performance />} />
-        <Route path='overview' element ={<</>}></Route>
+        <Route path='overview' element ={<Overview />}  />
         <Route path="/logout" element={<Logout />} />
       </Route>
 
