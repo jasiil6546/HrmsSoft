@@ -1,35 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/sidebar";
+import { Outlet, useLocation } from "react-router-dom";
+import Sidebar, { menuItems } from "../../components/Sidebar/sidebar";
 import TopNav from "../../components/Sidebar/Topnav";
-import SubNav from "../../components/Sidebar/subnav";
 
+const DashboardLayout = () => {
+  const location = useLocation();
+  const [activeTop, setActiveTop] = useState("");
 
-const DashBoardLayout = () => {
+  // find which sidebar menu is active
+  const activeMenu = menuItems.find((item) =>
+    location.pathname.startsWith(`/${item.path}`)
+  );
+
   return (
-    <>
-    
-    <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#fff" }}>
-      {/* Sidebar */}
+    <Box sx={{ display: "flex", height: "100vh" }}>
       <Sidebar />
 
-      {/* Main */}
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-         <TopNav />
+        {/* Show TopNav only if sidebar item has children */}
+        {activeMenu?.children && (
+          <TopNav
+            items={activeMenu.children}
+            activeTop={activeTop}
+            setActiveTop={setActiveTop}
+          />
+        )}
 
-        <SubNav /> 
-
-        {/* Main White Content */}
-        <Box sx={{ flexGrow: 1, p: 2, backgroundColor: "#ffffffff" }}>
+        <Box sx={{ flexGrow: 1, p: 2 }}>
           <Outlet />
         </Box>
-
-       
       </Box>
     </Box>
-    </>
   );
 };
 
-export default DashBoardLayout;
+export default DashboardLayout;
+
+
+

@@ -1,33 +1,23 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../redux/Slice/authslice"; // adjust path
 
-const LogoutButton = () => {
-  const dispatch = useDispatch();
+const Logout = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logout()); // clears redux + storage
-    navigate("/login"); // redirect to login page
-  };
+  useEffect(() => {
+    // ✅ Remove tokens on logout
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
 
-  return (
-    <button
-      onClick={handleLogout}
-      style={{
-        padding: "8px 16px",
-        border: "none",
-        borderRadius: "6px",
-        background: "#e63946",
-        color: "#fff",
-        cursor: "pointer",
-        fontWeight: "bold",
-      }}
-    >
-      Logout
-    </button>
-  );
+    // (Optional) clear Redux state if you have logout action
+    // dispatch(logoutUser());
+
+    // Redirect to login page
+    navigate("/auth/login");
+  }, [navigate]);
+
+  return null; // nothing visible
 };
 
-export default LogoutButton;
+export default Logout;
+

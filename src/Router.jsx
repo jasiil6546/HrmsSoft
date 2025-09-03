@@ -1,38 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PublicRouter from "./routing/route/PublicRouter";
-import PublicRoute from "./routing/route/PublicRoute";
-import InhouseRouter from "./routing/route/InhouseRouter";
 import AdminRouter from "./routing/route/AdminRouter";
 import MainRouter from "./routing/route/MainRouter";
-import ProfileCompletionCheckRoute from "./routing/route/ProfileCompletioncheckRoute";
+import ProfileCompletionCheckRoute from "./routing/route/ProfileCompletionCheckRoute";
 
 const Router = () => {
   return (
     <Routes>
-      {/* Public pages */}
+      {/* Public (auth) routes */}
+      <Route path="/auth/*" element={<PublicRouter />} />
+
+      {/* Main dashboard (protected) */}
       <Route
         path="/*"
-        element={
-          <ProfileCompletionCheckRoute>
-            <PublicRouter />
-          </ProfileCompletionCheckRoute>
-        }
-      />
-
-      {/* Auth pages */}
-      <Route
-        path="/auth/*"
-        element={
-          <PublicRoute>
-            <PublicRouter />
-          </PublicRoute>
-        }
-      />
-
-      {/* User (dashboard) routes */}
-      <Route
-        path="/user/*"
         element={
           <ProfileCompletionCheckRoute>
             <MainRouter />
@@ -40,17 +21,8 @@ const Router = () => {
         }
       />
 
-      {/* Inhouse routes */}
-      <Route
-        path="/inhouse/*"
-        element={
-          <ProfileCompletionCheckRoute>
-            <InhouseRouter />
-          </ProfileCompletionCheckRoute>
-        }
-      />
 
-      {/* Admin routes */}
+      {/* Admin routes (protected) */}
       <Route
         path="/admin/*"
         element={

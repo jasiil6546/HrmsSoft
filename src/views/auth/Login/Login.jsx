@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
@@ -16,46 +16,51 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/lmages/logow.png";
 import backgroundImg from "../../../assets/lmages/background.jpg";
 import { loginUser } from "../../../redux/Slice/authslice";
-import "../../../App.css";
 import ForgotPasswordModal from "../../Dash/Forgetpass";
+import "../../../App.css";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
+
+  const { loading, error, user, token } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [openForgot, setOpenForgot] = useState(false);
 
+  // Redirect if already logged in
+  useEffect(() => {
+    if (token && user) {
+      const roleId = user.role_id;
+      if (roleId === 1) navigate("/admin/dashboard");
+      else if (roleId === 2) navigate("/hr/dashboard");
+      else if (roleId === 3) navigate("/manager/dashboard");
+      else navigate("/");
+    }
+  }, [token, user, navigate]);
+
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password)
-      return alert("Please enter email and password");
+    if (!formData.email || !formData.password) {
+      alert("Please enter email and password");
+      return;
+    }
 
     dispatch(loginUser(formData))
       .unwrap()
       .then((res) => {
         alert(`Welcome ${res.user.name || formData.email}`);
 
-        // Save token
-        if (rememberMe) localStorage.setItem("token", res.token);
-        else sessionStorage.setItem("token", res.token);
-
-        // Role-based navigation using role_id
-        const roleId = res.user.role_id;
-        if (roleId === 1) {
-          navigate("/admin/dashboard");
-        } else if (roleId === 2) {
-          navigate("/hr/dashboard");
-        } else if (roleId === 3) {
-          navigate("/manager/dashboard");
+        // ✅ Save token properly
+        if (rememberMe) {
+          localStorage.setItem("token", res.token);
         } else {
-          navigate("/user/dashboard"); // default: Employee
+          sessionStorage.setItem("token", res.token);
         }
       })
       .catch((err) => alert(err));
@@ -105,7 +110,7 @@ const Login = () => {
         }}
       />
 
-      {/* Login Box */}
+      {/* Login Form */}
       <Box
         component="form"
         onSubmit={handleLogin}
@@ -138,7 +143,6 @@ const Login = () => {
           Sign In
         </Typography>
 
-        {/* Email */}
         <TextField
           label="Email"
           name="email"
@@ -149,7 +153,6 @@ const Login = () => {
           InputLabelProps={{ style: { color: "rgba(255,255,255,0.7)" } }}
         />
 
-        {/* Password */}
         <TextField
           label="Password"
           name="password"
@@ -173,7 +176,6 @@ const Login = () => {
           InputLabelProps={{ style: { color: "rgba(255,255,255,0.7)" } }}
         />
 
-        {/* Remember & Forgot */}
         <Box
           sx={{
             display: "flex",
@@ -203,7 +205,6 @@ const Login = () => {
           </Link>
         </Box>
 
-        {/* Submit */}
         <Button
           type="submit"
           disabled={loading}
@@ -233,13 +234,17 @@ const Login = () => {
           sx={{ mt: 3, textAlign: "center", color: "#ccc" }}
         >
           Don’t have an account?{" "}
-          <Link href="/auth/register" underline="hover" sx={{ color: "#90caf9" }}>
+          <Link
+            href="/auth/register"
+            underline="hover"
+            sx={{ color: "#90caf9" }}
+          >
             Get started
           </Link>
         </Typography>
       </Box>
 
-      {/* Forgot Password Modal */}
+
       <ForgotPasswordModal
         open={openForgot}
         onClose={() => setOpenForgot(false)}
@@ -255,4 +260,5 @@ const Login = () => {
 };
 
 export default Login;
+
 
