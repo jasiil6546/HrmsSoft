@@ -17,6 +17,7 @@ const MainRouter = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="okr" element={<OKRPage />} />
         <Route path="performance" element={<Performance />} />
+        <Route path='overview' element ={<</>}></Route>
         <Route path="/logout" element={<Logout />} />
       </Route>
 

@@ -21,9 +21,8 @@ export const menuItems = [
     label: "Home",
     path: "dashboard",
     children: [
-      { label: "My Space", path: "myspace" },
-      { label: "Team", path: "team" },
-      { label: "Organization", path: "organization" },
+      { label: "Overview", path: "overview" },
+      { label: "Calender", path: "organization" },
     ],
   },
   {
