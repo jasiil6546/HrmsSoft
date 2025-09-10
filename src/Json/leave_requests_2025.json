@@ -1,0 +1,1202 @@
+[
+  {
+    "requestId": 1,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-10-21",
+      "to": "2025-10-25"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-10-12",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 2,
+    "employeeName": "Sara Lee",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-11",
+      "to": "2025-09-13"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-09-08",
+    "status": "Approved"
+  },
+  {
+    "requestId": 3,
+    "employeeName": "Anjali Verma",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-08-21",
+      "to": "2025-08-25"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-08-02",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 4,
+    "employeeName": "David Wilson",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-04-10",
+      "to": "2025-04-10"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-03-28",
+    "status": "Approved"
+  },
+  {
+    "requestId": 5,
+    "employeeName": "Emily Johnson",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-11-27",
+      "to": "2025-12-01"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-11-16",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 6,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-05-12",
+      "to": "2025-05-16"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-05-01",
+    "status": "Approved"
+  },
+  {
+    "requestId": 7,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-01-26",
+      "to": "2025-01-26"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-01-25",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 8,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-05-25",
+      "to": "2025-05-27"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-05-16",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 9,
+    "employeeName": "Emily Johnson",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-06-13",
+      "to": "2025-06-16"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-05-26",
+    "status": "Pending"
+  },
+  {
+    "requestId": 10,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-08-14",
+      "to": "2025-08-19"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-08-02",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 11,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-10-25",
+      "to": "2025-10-28"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-10-07",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 12,
+    "employeeName": "Sara Lee",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-02-22",
+      "to": "2025-02-25"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-02-12",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 13,
+    "employeeName": "Amit Kumar",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-01-25",
+      "to": "2025-01-26"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-01-14",
+    "status": "Pending"
+  },
+  {
+    "requestId": 14,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-10-16",
+      "to": "2025-10-17"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-10-12",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 15,
+    "employeeName": "Amit Kumar",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-08-11",
+      "to": "2025-08-11"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-08-04",
+    "status": "Pending"
+  },
+  {
+    "requestId": 16,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-07-02",
+      "to": "2025-07-07"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-06-14",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 17,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-03-24",
+      "to": "2025-03-24"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-03-13",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 18,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-12-13",
+      "to": "2025-12-17"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-11-26",
+    "status": "Pending"
+  },
+  {
+    "requestId": 19,
+    "employeeName": "John Doe",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-01-22",
+      "to": "2025-01-24"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-01-18",
+    "status": "Pending"
+  },
+  {
+    "requestId": 20,
+    "employeeName": "Michael Brown",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-02-13",
+      "to": "2025-02-14"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-02-03",
+    "status": "Pending"
+  },
+  {
+    "requestId": 21,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-03-12",
+      "to": "2025-03-14"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-03-06",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 22,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-06-03",
+      "to": "2025-06-05"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-05-19",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 23,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-06",
+      "to": "2025-09-06"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-08-31",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 24,
+    "employeeName": "Anjali Verma",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-01-04",
+      "to": "2025-01-04"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2024-12-29",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 25,
+    "employeeName": "David Wilson",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-08-30",
+      "to": "2025-09-02"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-08-13",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 26,
+    "employeeName": "Jane Smith",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-07-21",
+      "to": "2025-07-24"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-07-11",
+    "status": "Pending"
+  },
+  {
+    "requestId": 27,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-07-31",
+      "to": "2025-07-31"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-07-17",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 28,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-03-25",
+      "to": "2025-03-26"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-03-16",
+    "status": "Pending"
+  },
+  {
+    "requestId": 29,
+    "employeeName": "Anjali Verma",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-10-31",
+      "to": "2025-11-02"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-10-30",
+    "status": "Pending"
+  },
+  {
+    "requestId": 30,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-01-25",
+      "to": "2025-01-30"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-01-05",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 31,
+    "employeeName": "Michael Brown",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-07-16",
+      "to": "2025-07-20"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-07-06",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 32,
+    "employeeName": "Jane Smith",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-12-09",
+      "to": "2025-12-12"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-11-21",
+    "status": "Approved"
+  },
+  {
+    "requestId": 33,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-10-04",
+      "to": "2025-10-08"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-09-15",
+    "status": "Pending"
+  },
+  {
+    "requestId": 34,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-02-28",
+      "to": "2025-03-02"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-02-11",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 35,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-10-23",
+      "to": "2025-10-27"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-10-07",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 36,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-09-20",
+      "to": "2025-09-20"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-09-14",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 37,
+    "employeeName": "Sara Lee",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-01-22",
+      "to": "2025-01-22"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-01-17",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 38,
+    "employeeName": "Sara Lee",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-03-26",
+      "to": "2025-03-27"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-03-22",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 39,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-07-08",
+      "to": "2025-07-12"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-06-23",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 40,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-10-01",
+      "to": "2025-10-05"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-09-23",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 41,
+    "employeeName": "Neha Reddy",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-10-03",
+      "to": "2025-10-08"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-09-23",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 42,
+    "employeeName": "Daniel Clark",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-05-31",
+      "to": "2025-06-02"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-05-26",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 43,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-02-07",
+      "to": "2025-02-09"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-01-31",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 44,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-07-19",
+      "to": "2025-07-22"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-07-06",
+    "status": "Pending"
+  },
+  {
+    "requestId": 45,
+    "employeeName": "Anjali Verma",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-12-31",
+      "to": "2026-01-05"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-12-25",
+    "status": "Pending"
+  },
+  {
+    "requestId": 46,
+    "employeeName": "Michael Brown",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-08-08",
+      "to": "2025-08-11"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-07-31",
+    "status": "Pending"
+  },
+  {
+    "requestId": 47,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-09",
+      "to": "2025-09-12"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-08-30",
+    "status": "Approved"
+  },
+  {
+    "requestId": 48,
+    "employeeName": "Jane Smith",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-15",
+      "to": "2025-09-18"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-09-10",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 49,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-02-04",
+      "to": "2025-02-07"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-01-24",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 50,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-03-04",
+      "to": "2025-03-09"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-02-12",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 51,
+    "employeeName": "Emily Johnson",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-07-24",
+      "to": "2025-07-29"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-07-05",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 52,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-04-20",
+      "to": "2025-04-20"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-04-18",
+    "status": "Pending"
+  },
+  {
+    "requestId": 53,
+    "employeeName": "John Doe",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-02-01",
+      "to": "2025-02-03"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-01-14",
+    "status": "Approved"
+  },
+  {
+    "requestId": 54,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-10-14",
+      "to": "2025-10-19"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-09-30",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 55,
+    "employeeName": "David Wilson",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-06-06",
+      "to": "2025-06-11"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-05-21",
+    "status": "Pending"
+  },
+  {
+    "requestId": 56,
+    "employeeName": "Amit Kumar",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-01-15",
+      "to": "2025-01-16"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-01-07",
+    "status": "Approved"
+  },
+  {
+    "requestId": 57,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-01-22",
+      "to": "2025-01-24"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-01-05",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 58,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-03-15",
+      "to": "2025-03-15"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-03-09",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 59,
+    "employeeName": "Daniel Clark",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-07-31",
+      "to": "2025-07-31"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-07-18",
+    "status": "Pending"
+  },
+  {
+    "requestId": 60,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-12-04",
+      "to": "2025-12-06"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-11-20",
+    "status": "Pending"
+  },
+  {
+    "requestId": 61,
+    "employeeName": "Amit Kumar",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-02-06",
+      "to": "2025-02-07"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-01-31",
+    "status": "Pending"
+  },
+  {
+    "requestId": 62,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-04-30",
+      "to": "2025-05-03"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-04-28",
+    "status": "Pending"
+  },
+  {
+    "requestId": 63,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-01-17",
+      "to": "2025-01-18"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-01-07",
+    "status": "Approved"
+  },
+  {
+    "requestId": 64,
+    "employeeName": "Jane Smith",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-05-21",
+      "to": "2025-05-24"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-05-10",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 65,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-09-22",
+      "to": "2025-09-22"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-09-19",
+    "status": "Approved"
+  },
+  {
+    "requestId": 66,
+    "employeeName": "Sara Lee",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-03-16",
+      "to": "2025-03-17"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-03-12",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 67,
+    "employeeName": "John Doe",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-07-10",
+      "to": "2025-07-13"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-07-05",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 68,
+    "employeeName": "John Doe",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-09-09",
+      "to": "2025-09-14"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-08-23",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 69,
+    "employeeName": "Ravi Patel",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-04-08",
+      "to": "2025-04-08"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-04-01",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 70,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-11-06",
+      "to": "2025-11-10"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-11-05",
+    "status": "Approved"
+  },
+  {
+    "requestId": 71,
+    "employeeName": "Ravi Patel",
+    "leaveType": "Emergency WFH",
+    "leavePeriod": {
+      "from": "2025-05-10",
+      "to": "2025-05-13"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-05-07",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 72,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-07-20",
+      "to": "2025-07-22"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-07-09",
+    "status": "Pending"
+  },
+  {
+    "requestId": 73,
+    "employeeName": "Sophia Thomas",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-18",
+      "to": "2025-09-23"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-09-11",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 74,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-06-10",
+      "to": "2025-06-14"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-06-08",
+    "status": "Approved"
+  },
+  {
+    "requestId": 75,
+    "employeeName": "Rahul Singh",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-05-05",
+      "to": "2025-05-06"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-04-18",
+    "status": "Pending"
+  },
+  {
+    "requestId": 76,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-10-17",
+      "to": "2025-10-20"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-09-29",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 77,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-01-21",
+      "to": "2025-01-21"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-01-12",
+    "status": "Pending"
+  },
+  {
+    "requestId": 78,
+    "employeeName": "Neha Reddy",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-07-19",
+      "to": "2025-07-23"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-07-10",
+    "status": "Approved"
+  },
+  {
+    "requestId": 79,
+    "employeeName": "Neha Reddy",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-08-17",
+      "to": "2025-08-19"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-08-03",
+    "status": "Pending"
+  },
+  {
+    "requestId": 80,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-10-02",
+      "to": "2025-10-06"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-09-16",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 81,
+    "employeeName": "Anjali Verma",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-06-19",
+      "to": "2025-06-22"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-06-11",
+    "status": "Approved"
+  },
+  {
+    "requestId": 82,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-08-26",
+      "to": "2025-08-29"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-08-15",
+    "status": "Pending"
+  },
+  {
+    "requestId": 83,
+    "employeeName": "Arjun Mehta",
+    "leaveType": "Leave Without Pay",
+    "leavePeriod": {
+      "from": "2025-07-31",
+      "to": "2025-08-03"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-07-26",
+    "status": "Pending"
+  },
+  {
+    "requestId": 84,
+    "employeeName": "John Doe",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-12-05",
+      "to": "2025-12-08"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-11-24",
+    "status": "Pending"
+  },
+  {
+    "requestId": 85,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-07-17",
+      "to": "2025-07-20"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-06-28",
+    "status": "Pending"
+  },
+  {
+    "requestId": 86,
+    "employeeName": "Sara Lee",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-04-13",
+      "to": "2025-04-16"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-04-03",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 87,
+    "employeeName": "Sara Lee",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-07-01",
+      "to": "2025-07-04"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-06-11",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 88,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-07-05",
+      "to": "2025-07-05"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-06-26",
+    "status": "Approved"
+  },
+  {
+    "requestId": 89,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-04-19",
+      "to": "2025-04-21"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-04-16",
+    "status": "Approved"
+  },
+  {
+    "requestId": 90,
+    "employeeName": "John Doe",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-03-09",
+      "to": "2025-03-12"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-02-24",
+    "status": "Pending"
+  },
+  {
+    "requestId": 91,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-01-30",
+      "to": "2025-02-02"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-01-26",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 92,
+    "employeeName": "Daniel Clark",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-01-11",
+      "to": "2025-01-16"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-01-04",
+    "status": "Pending"
+  },
+  {
+    "requestId": 93,
+    "employeeName": "John Doe",
+    "leaveType": "Casual Leave",
+    "leavePeriod": {
+      "from": "2025-10-04",
+      "to": "2025-10-05"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-09-30",
+    "status": "Pending"
+  },
+  {
+    "requestId": 94,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-12-28",
+      "to": "2025-12-28"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-12-17",
+    "status": "Approved"
+  },
+  {
+    "requestId": 95,
+    "employeeName": "John Doe",
+    "leaveType": "WFH",
+    "leavePeriod": {
+      "from": "2025-08-08",
+      "to": "2025-08-11"
+    },
+    "noOfDays": 4,
+    "dateOfRequest": "2025-08-01",
+    "status": "Rejected"
+  },
+  {
+    "requestId": 96,
+    "employeeName": "Priya Sharma",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-10-13",
+      "to": "2025-10-14"
+    },
+    "noOfDays": 2,
+    "dateOfRequest": "2025-10-11",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 97,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Sick Leave",
+    "leavePeriod": {
+      "from": "2025-09-11",
+      "to": "2025-09-11"
+    },
+    "noOfDays": 1,
+    "dateOfRequest": "2025-09-02",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 98,
+    "employeeName": "Amit Kumar",
+    "leaveType": "Compensatory Off",
+    "leavePeriod": {
+      "from": "2025-06-07",
+      "to": "2025-06-09"
+    },
+    "noOfDays": 3,
+    "dateOfRequest": "2025-05-29",
+    "status": "Approved"
+  },
+  {
+    "requestId": 99,
+    "employeeName": "Michael Brown",
+    "leaveType": "Special Leave",
+    "leavePeriod": {
+      "from": "2025-08-31",
+      "to": "2025-09-04"
+    },
+    "noOfDays": 5,
+    "dateOfRequest": "2025-08-26",
+    "status": "Cancelled"
+  },
+  {
+    "requestId": 100,
+    "employeeName": "Rahul Singh",
+    "leaveType": "Earned Leave",
+    "leavePeriod": {
+      "from": "2025-08-12",
+      "to": "2025-08-17"
+    },
+    "noOfDays": 6,
+    "dateOfRequest": "2025-08-01",
+    "status": "Cancelled"
+  }
+]

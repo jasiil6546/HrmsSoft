@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar, { menuItems } from "../../components/Sidebar/sidebar";
+import Sidebar  from "../../components/Sidebar/sidebar";
 import TopNav from "../../components/Sidebar/Topnav";
+import { menuItems } from "../../Json/menuItems";
 
 const DashboardLayout = () => {
   const location = useLocation();
@@ -10,8 +11,8 @@ const DashboardLayout = () => {
 
   // find which sidebar menu is active
   const activeMenu = menuItems.find((item) =>
-    location.pathname.startsWith(`/${item.path}`)
-  );
+  location.pathname.toLowerCase().startsWith(`/${item.path.toLowerCase()}`)
+);
 
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
@@ -27,7 +28,7 @@ const DashboardLayout = () => {
           />
         )}
 
-        <Box sx={{ flexGrow: 1, p: 2 }}>
+        <Box sx={{ flexGrow: 1, p: 0 }}>
           <Outlet />
         </Box>
       </Box>

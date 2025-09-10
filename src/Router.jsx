@@ -4,12 +4,14 @@ import PublicRouter from "./routing/route/PublicRouter";
 import AdminRouter from "./routing/route/AdminRouter";
 import MainRouter from "./routing/route/MainRouter";
 import ProfileCompletionCheckRoute from "./routing/route/ProfileCompletionCheckRoute";
+import PublicRoute from "./routing/route/Public";
 
 const Router = () => {
   return (
     <Routes>
       {/* Public (auth) routes */}
-      <Route path="/auth/*" element={<PublicRouter />} />
+
+      <Route path="/auth/*" element={<PublicRoute><PublicRouter /> </PublicRoute>} />
 
       {/* Main dashboard (protected) */}
       <Route

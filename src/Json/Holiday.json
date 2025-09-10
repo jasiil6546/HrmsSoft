@@ -1,0 +1,65 @@
+[
+  {
+    "year": 2025,
+    "holidays": [
+      { "holidayName": "New Year's Day", "date": "2025-01-01" },
+      { "holidayName": "Makar Sankranti", "date": "2025-01-14" },
+      { "holidayName": "Republic Day", "date": "2025-01-26" },
+      { "holidayName": "Maha Shivaratri", "date": "2025-02-26" },
+      { "holidayName": "Holi", "date": "2025-03-14" },
+      { "holidayName": "Good Friday", "date": "2025-04-18" },
+      { "holidayName": "Ram Navami", "date": "2025-04-06" },
+      { "holidayName": "Eid al-Fitr", "date": "2025-03-30" },
+      { "holidayName": "Independence Day", "date": "2025-08-15" },
+      { "holidayName": "Raksha Bandhan", "date": "2025-08-09" },
+      { "holidayName": "Janmashtami", "date": "2025-08-16" },
+      { "holidayName": "Ganesh Chaturthi", "date": "2025-08-27" },
+      { "holidayName": "Gandhi Jayanti", "date": "2025-10-02" },
+      { "holidayName": "Dussehra", "date": "2025-10-02" },
+      { "holidayName": "Diwali", "date": "2025-10-20" },
+      { "holidayName": "Christmas", "date": "2025-12-25" }
+    ]
+  },
+  {
+    "year": 2026,
+    "holidays": [
+      { "holidayName": "New Year's Day", "date": "2026-01-01" },
+      { "holidayName": "Makar Sankranti", "date": "2026-01-14" },
+      { "holidayName": "Republic Day", "date": "2026-01-26" },
+      { "holidayName": "Maha Shivaratri", "date": "2026-02-15" },
+      { "holidayName": "Holi", "date": "2026-03-03" },
+      { "holidayName": "Good Friday", "date": "2026-04-03" },
+      { "holidayName": "Ram Navami", "date": "2026-03-27" },
+      { "holidayName": "Eid al-Fitr", "date": "2026-03-20" },
+      { "holidayName": "Independence Day", "date": "2026-08-15" },
+      { "holidayName": "Raksha Bandhan", "date": "2026-08-28" },
+      { "holidayName": "Janmashtami", "date": "2026-08-05" },
+      { "holidayName": "Ganesh Chaturthi", "date": "2026-09-16" },
+      { "holidayName": "Gandhi Jayanti", "date": "2026-10-02" },
+      { "holidayName": "Dussehra", "date": "2026-10-20" },
+      { "holidayName": "Diwali", "date": "2026-11-08" },
+      { "holidayName": "Christmas", "date": "2026-12-25" }
+    ]
+  },
+  {
+    "year": 2027,
+    "holidays": [
+      { "holidayName": "New Year's Day", "date": "2027-01-01" },
+      { "holidayName": "Makar Sankranti", "date": "2027-01-14" },
+      { "holidayName": "Republic Day", "date": "2027-01-26" },
+      { "holidayName": "Maha Shivaratri", "date": "2027-03-04" },
+      { "holidayName": "Holi", "date": "2027-03-22" },
+      { "holidayName": "Good Friday", "date": "2027-03-26" },
+      { "holidayName": "Ram Navami", "date": "2027-04-15" },
+      { "holidayName": "Eid al-Fitr", "date": "2027-03-10" },
+      { "holidayName": "Independence Day", "date": "2027-08-15" },
+      { "holidayName": "Raksha Bandhan", "date": "2027-08-18" },
+      { "holidayName": "Janmashtami", "date": "2027-08-25" },
+      { "holidayName": "Ganesh Chaturthi", "date": "2027-09-05" },
+      { "holidayName": "Gandhi Jayanti", "date": "2027-10-02" },
+      { "holidayName": "Dussehra", "date": "2027-10-10" },
+      { "holidayName": "Diwali", "date": "2027-10-29" },
+      { "holidayName": "Christmas", "date": "2027-12-25" }
+    ]
+  }
+]

@@ -1,32 +1,43 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DashBoardLayout from "./DashBoardLayout";
-import Dashboard from "../../views/Dash/dashboard";
 import Fof from "../../components/fof";
-import OKRPage from "../../views/Dash/sidebar/okr";
-import Performance from "../../views/Dash/sidebar/Performance";
 import Logout from "../../views/auth/Login/Logout";
-import Overview from "../../views/Dash/sidetopchild/Overview"
+import Overview from "../../views/Dash/sidetopchild/Overview";
+import Calender from "../../views/Dash/sidetopchild/Calender";
+import Roletaple from "../../views/Admin/RoleTable";
+import LeaveSummary from "../../views/leave/LeaveSummary";
+import LeaveBalance from "../../views/leave/LeaveBalance";
+import LeaveRequests from "../../views/leave/LeaveRequests";
+import Holidays from "../../views/leave/Holidays";
+
 
 const MainRouter = () => {
   return (
     <Routes>
+      <Route path="/" element={<DashBoardLayout />}>
+        {/* Dashboard children */}
+        <Route path="dashboard/overview" element={<Overview />} />
+        <Route path="dashboard/calender" element={<Calender />} />
 
-      <Route path="/"
-        element={ <DashBoardLayout />}      >
-    
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="okr" element={<OKRPage />} />
-        <Route path="performance" element={<Performance />} />
-        <Route path='overview' element ={<Overview />}  />
-        <Route path="/logout" element={<Logout />} />
+        {/* Role children */}
+        <Route path="role/roletable" element={<Roletaple />} />
+
+        {/* Other routes */}
+        <Route path="leave/summary" element={<LeaveSummary />} />
+        <Route path="leave/balance" element={<LeaveBalance />} />
+        <Route path="leave/request" element={<LeaveRequests />} />
+        <Route path="leave/Holiday" element={<Holidays />} />
+        
+        <Route path="logout" element={<Logout />} />
       </Route>
 
-   
+      {/* 404 fallback */}
       <Route path="*" element={<Fof />} />
     </Routes>
   );
 };
 
 export default MainRouter;
+
 

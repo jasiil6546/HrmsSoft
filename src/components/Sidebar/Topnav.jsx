@@ -5,38 +5,38 @@ import {
   Typography,
   IconButton,
   Menu,
-  MenuItem
+  MenuItem,
+  Box,
+  Badge
 } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate hook
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useNavigate } from "react-router-dom";
 
 const TopNav = ({ items = [], activeTop, setActiveTop }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useNavigate(); // ✅ define navigate here
+  const [anchorEl, setAnchorEl] = useState(null); // profile menu
+  const navigate = useNavigate();
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+  // Profile menu handlers
+  const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
+  const handleMenuClose = () => setAnchorEl(null);
 
   const handleAction = (action) => {
     if (action === "logout") {
-      // clear auth/session storage
       localStorage.removeItem("authToken");
       sessionStorage.clear();
-
-      // navigate to logout route
-      navigate("/logout"); // ✅ now it works
+      navigate("/logout");
     } else if (action === "forgetPassword") {
       navigate("/forget-password");
     } else if (action === "changePassword") {
       navigate("/change-password");
     }
-
     handleMenuClose();
+  };
+
+  const handleNavClick = (item) => {
+    setActiveTop(item.label);
+    navigate(item.path);
   };
 
   return (
@@ -51,28 +51,35 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
           justifyContent: "space-between"
         }}
       >
-        {/* Left side nav items */}
-        <div>
+        {/* Navigation Items */}
+        <Box sx={{ display: "flex" }}>
           {items.map((item) => (
             <Typography
               key={item.label}
-              onClick={() => setActiveTop(item.label)}
+              onClick={() => handleNavClick(item)}
               sx={{
                 mr: 3,
                 cursor: "pointer",
                 borderBottom:
                   activeTop === item.label ? "2px solid #00bfff" : "none",
-                color: "#fff",
-                display: "inline-block"
+                color: "#fff"
               }}
             >
               {item.label}
             </Typography>
           ))}
-        </div>
+        </Box>
 
-        {/* Right side profile dropdown */}
-        <div>
+        {/* Right side icons */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {/* Notification Feature */}
+          <IconButton color="inherit">
+            <Badge badgeContent={3} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+
+          {/* Profile Menu */}
           <IconButton
             size="large"
             edge="end"
@@ -81,11 +88,7 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
           >
             <AccountCircle />
           </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-          >
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
             <MenuItem onClick={() => handleAction("forgetPassword")}>
               Forget Password
             </MenuItem>
@@ -96,13 +99,15 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
               Logout
             </MenuItem>
           </Menu>
-        </div>
+        </Box>
       </Toolbar>
     </AppBar>
   );
 };
 
 export default TopNav;
+
+
 
 
 
