@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchHolidays,
-  fetchAllHolidays,
   addHoliday,
   updateHoliday,
   deleteHoliday,
-  restoreHoliday,
 } from "../../redux/Slice/holidaySlice";
 import {
   Box,
   Typography,
   Button,
   TextField,
-  Switch,
-  FormControlLabel,
-  Modal,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -29,190 +30,205 @@ function Holidays() {
     date: "",
     description: "",
   });
-  const [showDeleted, setShowDeleted] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
   const [search, setSearch] = useState("");
+  const [year, setYear] = useState("all");
+  const [open, setOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   useEffect(() => {
-    if (showDeleted) {
-      dispatch(fetchAllHolidays());
-    } else {
-      dispatch(fetchHolidays());
-    }
-  }, [showDeleted, dispatch]);
+    dispatch(fetchHolidays());
+  }, [dispatch]);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = () => {
-    if (form.id) {
-      dispatch(updateHoliday({ id: form.id, data: form }));
-    } else {
-      dispatch(addHoliday(form));
-    }
+    if (form.id) dispatch(updateHoliday({ id: form.id, data: form }));
+    else dispatch(addHoliday(form));
+    handleClose();
+  };
+
+  const handleOpen = (holiday = null) => {
+    if (holiday) {
+      setForm({
+        ...holiday,
+        date: holiday.date ? new Date(holiday.date).toISOString().split("T")[0] : "",
+      });
+    } else setForm({ id: null, holidayName: "", date: "", description: "" });
+    setOpen(true);
+  };
+
+  const handleClose = () => {
     setForm({ id: null, holidayName: "", date: "", description: "" });
-    setOpenModal(false);
+    setOpen(false);
   };
 
-  const handleEdit = (holiday) => {
-    setForm(holiday);
-    setOpenModal(true);
+  const askDelete = (id) => {
+    setDeleteId(id);
+    setConfirmOpen(true);
   };
 
-  const handleDelete = (id) => dispatch(deleteHoliday(id));
-  const handleRestore = (id) => dispatch(restoreHoliday(id));
+  const confirmDelete = () => {
+    if (deleteId) dispatch(deleteHoliday(deleteId));
+    setDeleteId(null);
+    setConfirmOpen(false);
+  };
 
-  // Filter holidays by search term
-  const filteredHolidays = holidays.filter(
-    (h) =>
-      h.holidayName.toLowerCase().includes(search.toLowerCase()) ||
-      h.description.toLowerCase().includes(search.toLowerCase())
-  );
+  const cancelDelete = () => {
+    setDeleteId(null);
+    setConfirmOpen(false);
+  };
+
+  const years = [...new Set(holidays.map((h) => h.date && new Date(h.date).getFullYear()))].filter(Boolean);
+
+  const filteredHolidays = holidays.filter((h) => {
+    const matchSearch = h.holidayName.toLowerCase().includes(search.toLowerCase());
+    const matchYear = year === "all" || (h.date && new Date(h.date).getFullYear() === Number(year));
+    return matchSearch && matchYear;
+  });
+
+  const rowsWithIndex = filteredHolidays.map((row, index) => ({
+    ...row,
+    id: row.id || index,
+    sl: index + 1,
+  }));
 
   const columns = [
-    { field: "holidayName", headerName: "Name", flex: 1 },
+    { field: "sl", headerName: "Sl No", width: 80 },
+    { field: "holidayName", headerName: "Holiday Name", flex: 1 },
     {
       field: "date",
       headerName: "Date",
       flex: 1,
-      valueGetter: (params) =>
-        params?.row?.date
-          ? new Date(params.row.date).toLocaleDateString()
-          : "—",
+      minWidth: 150,
+      sortable: true,
+      filterable: true,
+      renderCell: (params) => {
+        const val = params.value ?? params.row.date; // fallback row.date if params.value undefined
+        if (!val) return "—";
+
+        let dateObj = null;
+        if (typeof val === "string" || val instanceof String) {
+          dateObj = new Date(val);
+        } else if (typeof val === "number") {
+          dateObj = new Date(val);
+        } else {
+          return "—";
+        }
+
+        return isNaN(dateObj.getTime()) ? "—" : dateObj.toLocaleDateString();
+      },
     },
-    { field: "description", headerName: "Description", flex: 2 },
-    {
-      field: "deletedAt",
-      headerName: "Deleted At",
-      flex: 1.5,
-      valueGetter: (params) =>
-        params?.row?.deletedAt
-          ? new Date(params.row.deletedAt).toLocaleString()
-          : "—",
-    },
+    { field: "description", headerName: "Description", flex: 1, minWidth: 150 },
     {
       field: "actions",
       headerName: "Actions",
-      flex: 1.5,
+      width: 180,
+      sortable: false,
       renderCell: (params) => (
-        <>
-          {!params?.row?.deletedAt ? (
-            <>
-              <Button
-                size="small"
-                onClick={() => handleEdit(params.row)}
-                variant="outlined"
-              >
-                Edit
-              </Button>
-              <Button
-                size="small"
-                color="error"
-                onClick={() => handleDelete(params.row.id)}
-              >
-                Delete
-              </Button>
-            </>
-          ) : (
-            <Button
-              size="small"
-              color="success"
-              onClick={() => handleRestore(params.row.id)}
-            >
-              Restore
-            </Button>
-          )}
-        </>
+        <Box sx={{ display: "flex", gap: 1 ,mt:1}}>
+          <Button
+            size="small"
+            variant="outlined"
+            sx={{ textTransform: "none", borderColor: "#1976d2", color: "#1976d2", "&:hover": { backgroundColor: "#1976d21a" } }}
+            onClick={() => handleOpen(params.row)}
+          >
+            Edit
+          </Button>
+          <Button
+            size="small"
+            variant="contained"
+            color="error"
+            sx={{ textTransform: "none" }}
+            onClick={() => askDelete(params.row.id)}
+          >
+            Delete
+          </Button>
+        </Box>
       ),
     },
   ];
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 2 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-        <Typography variant="h6">Manage Holidays</Typography>
-
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <TextField
-            size="small"
-            placeholder="Search holidays..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <Button variant="contained" onClick={() => setOpenModal(true)}>
-            Add Holiday
-          </Button>
-        </Box>
-      </Box>
-
-      <FormControlLabel
-        control={
-          <Switch
-            checked={showDeleted}
-            onChange={() => setShowDeleted(!showDeleted)}
-          />
-        }
-        label="Show Deleted Holidays"
-      />
-
-      <DataGrid
-        autoHeight
-        rows={filteredHolidays}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5, 10]}
-        loading={loading}
-        disableSelectionOnClick
-        getRowId={(row) => row.id}
-      />
-
-      {/* Modal for Add/Edit */}
-      <Modal open={openModal} onClose={() => setOpenModal(false)}>
-        <Box
+        <Typography
+          variant="h5"
           sx={{
-            p: 3,
-            bgcolor: "background.paper",
-            width: 400,
-            mx: "auto",
-            mt: "10%",
-            borderRadius: 2,
+            fontWeight: 700,
+            color: "#1b2a4e",
+            letterSpacing: 0.5,
+            textTransform: "uppercase",
+            borderBottom: "1px solid #3536373e",
+            display: "inline-block",
+            mb: 2,
+            ml: 1,
           }}
         >
-          <Typography variant="h6" mb={2}>
-            {form.id ? "Edit Holiday" : "Add Holiday"}
-          </Typography>
-          <TextField
-            fullWidth
-            label="Holiday Name"
-            name="holidayName"
-            value={form.holidayName}
-            onChange={handleChange}
-            sx={{ mb: 2 }}
-          />
-          <TextField
-            fullWidth
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            sx={{ mb: 2 }}
-          />
-          <TextField
-            fullWidth
-            label="Description"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            sx={{ mb: 2 }}
-          />
-          <Button variant="contained" fullWidth onClick={handleSubmit}>
+          Holidays
+        </Typography>
+        <Button variant="contained" sx={{ textTransform: "none" }} onClick={() => handleOpen()}>
+          + Add Holiday
+        </Button>
+      </Box>
+
+      <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2, mb: 2 }}>
+        <TextField size="small" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+        <Select size="small" value={year} onChange={(e) => setYear(e.target.value)} displayEmpty sx={{ minWidth: 120 }}>
+          <MenuItem value="all">All Years</MenuItem>
+          {years.map((y) => (
+            <MenuItem key={y} value={y}>
+              {y}
+            </MenuItem>
+          ))}
+        </Select>
+      </Box>
+
+      <div style={{ height: 500, width: "100%" }}>
+        <DataGrid
+          rows={rowsWithIndex}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10, 20, 50]}
+          loading={loading}
+          disableSelectionOnClick
+          sx={{
+            "& .MuiDataGrid-columnHeaders": {  color: "#000000ff", fontWeight: 600 },
+            "& .MuiDataGrid-columnSeparator": { display: "none" },
+            "& .MuiDataGrid-row:nth-of-type(odd)": { backgroundColor: "#f9f9f9" },
+            "& .MuiDataGrid-row:hover": { backgroundColor: "#e3f2fd" },
+          }}
+        />
+      </div>
+
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle>{form.id ? "Edit Holiday" : "Add New Holiday"}</DialogTitle>
+        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}>
+          <TextField label="Holiday Name" name="holidayName" value={form.holidayName} onChange={handleChange} fullWidth />
+          <TextField type="date" name="date" value={form.date} onChange={handleChange} fullWidth />
+          <TextField label="Description" name="description" value={form.description} onChange={handleChange} fullWidth />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant="contained" onClick={handleSubmit}>
             {form.id ? "Update" : "Add"}
           </Button>
-        </Box>
-      </Modal>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={confirmOpen} onClose={cancelDelete}>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>Are you sure you want to delete this holiday?</DialogContent>
+        <DialogActions>
+          <Button onClick={cancelDelete}>Cancel</Button>
+          <Button color="error" variant="contained" onClick={confirmDelete}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
 
 export default Holidays;
-g
+

@@ -3,39 +3,38 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/holidays";
 
-// ✅ Fetch active holidays
 export const fetchHolidays = createAsyncThunk("holidays/fetchHolidays", async () => {
   const res = await axios.get(API_URL);
-  return res.data;
+  // Normalize dates to ISO string to ensure consistent date format in the state
+  return res.data.map(holiday => ({
+    ...holiday,
+    date: holiday.date ? new Date(holiday.date).toISOString() : null,
+  }));
 });
 
-// ✅ Fetch all (including deleted)
-export const fetchAllHolidays = createAsyncThunk("holidays/fetchAllHolidays", async () => {
-  const res = await axios.get(`${API_URL}/all`);
-  return res.data;
-});
-
-// ✅ Add holiday
 export const addHoliday = createAsyncThunk("holidays/addHoliday", async (holiday) => {
   const res = await axios.post(API_URL, holiday);
-  return res.data;
+  return {
+    ...res.data,
+    date: res.data.date ? new Date(res.data.date).toISOString() : null,
+  };
 });
 
-// ✅ Update holiday
-export const updateHoliday = createAsyncThunk("holidays/updateHoliday", async ({ id, data }) => {
-  await axios.put(`${API_URL}/${id}`, data);
-  return { id, ...data };
-});
+export const updateHoliday = createAsyncThunk(
+  "holidays/updateHoliday",
+  async ({ id, data }) => {
+    const res = await axios.put(`${API_URL}/${id}`, data);
+    
+    return {
+      id,
+      ...data,
+      date: data.date ? new Date(data.date).toISOString() : null,
+    };
+  }
+);
 
-// ✅ Soft delete
 export const deleteHoliday = createAsyncThunk("holidays/deleteHoliday", async (id) => {
   await axios.delete(`${API_URL}/${id}`);
-  return id;
-});
-
-// ✅ Restore holiday
-export const restoreHoliday = createAsyncThunk("holidays/restoreHoliday", async (id) => {
-  await axios.put(`${API_URL}/restore/${id}`);
   return id;
 });
 
@@ -49,35 +48,33 @@ const holidaySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHolidays.pending, (state) => { state.loading = true; })
+      .addCase(fetchHolidays.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchHolidays.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchAllHolidays.fulfilled, (state, action) => {
+      .addCase(fetchHolidays.rejected, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.error = action.error.message;
       })
+
       .addCase(addHoliday.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
+
       .addCase(updateHoliday.fulfilled, (state, action) => {
-        const index = state.items.findIndex(h => h.id === action.payload.id);
+        const index = state.items.findIndex((h) => h.id === action.payload.id);
         if (index !== -1) state.items[index] = action.payload;
       })
+
       .addCase(deleteHoliday.fulfilled, (state, action) => {
-        const index = state.items.findIndex(h => h.id === action.payload);
-        if (index !== -1) state.items[index].deletedAt = new Date().toISOString();
-      })
-      .addCase(restoreHoliday.fulfilled, (state, action) => {
-        const index = state.items.findIndex(h => h.id === action.payload);
-        if (index !== -1) state.items[index].deletedAt = null;
-      })
-      .addMatcher((action) => action.type.endsWith("rejected"), (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
+        // Soft delete: remove from items list
+        state.items = state.items.filter((h) => h.id !== action.payload);
       });
-  }
+  },
 });
 
 export default holidaySlice.reducer;
