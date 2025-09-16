@@ -31,7 +31,7 @@ export const menuItems = [
     icon: "mdi:calendar",
     label: "Goal",
     path: "Goals",
-    children: [{ label: "W Tracker",title:"Goals Management", path: "Goals/w" },
+    children: [{ label: "W Tracker", path: "Goals/w" },
       { label: "Goals request", path: "Goals/admin/request", admin: true },
     
     ],

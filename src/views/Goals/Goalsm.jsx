@@ -246,22 +246,20 @@ function Goalsm() {
               overflow: 'auto'
             },
             '& .MuiDataGrid-columnsContainer': {
-              minWidth: '1400px' // Set minimum width for columns
+              minWidth: '1400px'
             },
             '& .MuiDataGrid-cell': {
               display: 'flex',
               alignItems: 'center'
             }
           }}
-          // Enable column resizing
+      
           experimentalFeatures={{ columnResize: true }}
         />
       )}
 
-      {/* Add Goal Modal */}
       <AddGoalModal open={addOpen} onClose={() => setAddOpen(false)} onSave={handleAddGoal} />
 
-      {/* Edit Goal Modal */}
       <AddGoalModal 
         open={editOpen} 
         onClose={() => {setEditOpen(false); setEditGoal(null);}} 
@@ -269,7 +267,7 @@ function Goalsm() {
         initialData={editGoal}
       />
 
-      {/* Feedback Modal */}
+    
       <Modal open={feedbackOpen} onClose={() => setFeedbackOpen(false)}>
         <Box
           sx={{

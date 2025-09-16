@@ -10,12 +10,11 @@ const DashboardLayout = () => {
   const location = useLocation();
   const [activeTop, setActiveTop] = useState("");
 
-  // Find active sidebar menu
   const activeMenu = menuItems.find((item) =>
     location.pathname.toLowerCase().startsWith(`/${item.path.toLowerCase()}`)
   );
 
-  // Filter topnav items based on admin role
+
   const userRole = localStorage.getItem("userRole");
   const topNavItems =
     activeMenu?.children?.filter(
@@ -27,7 +26,7 @@ const DashboardLayout = () => {
       <Sidebar />
 
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-        {/* Show TopNav only if filtered children exist */}
+     
         {topNavItems.length > 0 && (
           <TopNav
             items={topNavItems}

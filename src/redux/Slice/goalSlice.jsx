@@ -35,12 +35,12 @@ export const updateGoal = createAsyncThunk("goals/updateGoal", async ({ goalId, 
   }
 });
 
-// DELETE GOAL - NEW
+
 export const deleteGoal = createAsyncThunk("goals/deleteGoal", async (goalId, { getState, rejectWithValue }) => {
   try {
     const token = getState().auth.token;
     await axios.delete(`${API_URL}/${goalId}`, { headers: { Authorization: `Bearer ${token}` } });
-    return goalId; // Return goalId to remove from state
+    return goalId;
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || err.message);
   }
@@ -80,7 +80,7 @@ const goalSlice = createSlice({
         const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
         if (idx !== -1) state.goals[idx] = { ...state.goals[idx], ...action.payload.updates };
       })
-      // DELETE GOAL - NEW HANDLER
+    
       .addCase(deleteGoal.fulfilled, (state, action) => {
         state.goals = state.goals.filter(g => g.goalId !== action.payload);
       })

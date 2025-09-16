@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("../db"); // your MySQL connection
+const connection = require("../db"); 
 
-// Status mapping
-// 1: Pending, 2: Approved, 3: Rejected, 4: In-Progress, 5: Completed
-
-// GET all goals
 router.get("/", (req, res) => {
     connection.query("SELECT * FROM goals", (err, results) => {
         if (err) return res.status(500).json(err);
@@ -13,7 +9,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET goal by ID
+
 router.get("/:id", (req, res) => {
     connection.query("SELECT * FROM goals WHERE goalId = ?", [req.params.id], (err, results) => {
         if (err) return res.status(500).json(err);
@@ -22,7 +18,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST create new goal
+
 router.post("/", (req, res) => {
     const { goalName, description, startDate, endDate, estimatedHours, createdBy, assignedTo } = req.body;
     const sql = "INSERT INTO goals (goalName, description, startDate, endDate, estimatedHours, status, createdBy, assignedTo) VALUES (?, ?, ?, ?, ?, 1, ?, ?)";
@@ -32,7 +28,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// PUT update goal (only if Pending)
+
 router.put("/:id", (req, res) => {
     const { goalName, description, startDate, endDate, estimatedHours } = req.body;
     connection.query("SELECT * FROM goals WHERE goalId = ?", [req.params.id], (err, results) => {
@@ -49,7 +45,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE goal (only if Pending)
+
 router.delete("/:id", (req, res) => {
     connection.query("DELETE FROM goals WHERE goalId = ?", [req.params.id], (err, result) => {
         if (err) return res.status(500).json(err);
@@ -58,13 +54,13 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-// PUT change status (Admin)
+
 router.put("/:id/status", (req, res) => {
-    const { newStatus } = req.body; // number 1-5
+    const { newStatus } = req.body; 
     const validTransitions = {
-        1: [2, 3], // Pending → Approved/Rejected
-        2: [4],    // Approved → In-Progress
-        4: [5]     // In-Progress → Completed
+        1: [2, 3], 
+        2: [4],   
+        4: [5]     
     };
 
     connection.query("SELECT status FROM goals WHERE goalId=?", [req.params.id], (err, results) => {
@@ -82,7 +78,7 @@ router.put("/:id/status", (req, res) => {
     });
 });
 
-// PUT complete goal with rating & feedback
+
 router.put("/:id/complete", (req, res) => {
     const { rating, feedback } = req.body;
     connection.query("SELECT status FROM goals WHERE goalId=?", [req.params.id], (err, results) => {

@@ -17,7 +17,7 @@ function Goaly() {
   const { goals, status, error } = useSelector((state) => state.goals);
   const { user, token } = useSelector((state) => state.auth);
 
-  // Debug: Check user role
+
   console.log("User:", user);
   console.log("User role:", user?.role);
   console.log("Goals:", goals);
@@ -60,7 +60,7 @@ function Goaly() {
         const goal = params.row;
         console.log("Rendering actions for goal:", goal?.goalId, "status:", goal?.status);
 
-        // Show buttons for Pending goals (status = 1)
+       
         if (goal?.status === 1) {
           return (
             <Box sx={{ display: "flex", gap: 5,mt:1 }}>
