@@ -8,6 +8,7 @@ export const menuItems = [
     children: [
       { label: "Overview", path: "dashboard/overview" },
       { label: "Calendar", path: "dashboard/calender" },
+     
     ],
   },
   {
@@ -28,8 +29,12 @@ export const menuItems = [
   },
   {
     icon: "mdi:calendar",
-    label: "Attendance",
-    path: "ate",
+    label: "Goal",
+    path: "Goals",
+    children: [{ label: "W Tracker",title:"Goals Management", path: "Goals/w" },
+      { label: "Goals request", path: "Goals/admin/request", admin: true },
+    
+    ],
   },
   {
     icon: "mdi:clipboard-check",

@@ -5,6 +5,7 @@ const passRouter= require("./Models/pass");
 const Attendence= require("./Models/attendance");
 const rolesRouter = require("./Models/roles");
 const HolidaysRouter = require("./Models/holidays");
+const goalsRouter = require("./Models/goals");
 const app = express();
 
 app.use(cors());
@@ -17,7 +18,7 @@ app.use("/pass", passRouter);
 app.use("/attendance",Attendence);
 app.use("/roles", rolesRouter);
 app.use("/holidays", HolidaysRouter);
-
+app.use("/goals", goalsRouter);
 app.use((req, res, next) => {
   console.log("➡️ Incoming request:", req.method, req.url);
   next();

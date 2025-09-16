@@ -11,7 +11,10 @@ const Router = () => {
     <Routes>
       {/* Public (auth) routes */}
 
-      <Route path="/auth/*" element={<PublicRoute><PublicRouter /> </PublicRoute>} />
+      <Route path="/auth/*" element={
+        <PublicRoute>
+        <PublicRouter /> 
+        </PublicRoute>} />
 
       {/* Main dashboard (protected) */}
       <Route

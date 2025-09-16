@@ -14,8 +14,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate } from "react-router-dom";
 
 const TopNav = ({ items = [], activeTop, setActiveTop }) => {
-  const [anchorEl, setAnchorEl] = useState(null); // profile menu
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const userRole = localStorage.getItem("userRole");
 
   // Profile menu handlers
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
@@ -39,29 +40,22 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
     navigate(item.path);
   };
 
+  // Filter out admin-only items if user is not admin
+  const filteredItems = items.filter(item => !item.admin || userRole === "admin");
+
   return (
-    <AppBar
-      position="static"
-      sx={{ backgroundColor: "#1b2a4e", boxShadow: "none" }}
-    >
-      <Toolbar
-        sx={{
-          minHeight: "48px !important",
-          display: "flex",
-          justifyContent: "space-between"
-        }}
-      >
+    <AppBar position="static" sx={{ backgroundColor: "#1b2a4e", boxShadow: "none" }}>
+      <Toolbar sx={{ minHeight: "48px !important", display: "flex", justifyContent: "space-between" }}>
         {/* Navigation Items */}
         <Box sx={{ display: "flex" }}>
-          {items.map((item) => (
+          {filteredItems.map((item) => (
             <Typography
               key={item.label}
               onClick={() => handleNavClick(item)}
               sx={{
                 mr: 3,
                 cursor: "pointer",
-                borderBottom:
-                  activeTop === item.label ? "2px solid #00bfff" : "none",
+                borderBottom: activeTop === item.label ? "2px solid #00bfff" : "none",
                 color: "#fff"
               }}
             >
@@ -80,24 +74,13 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
           </IconButton>
 
           {/* Profile Menu */}
-          <IconButton
-            size="large"
-            edge="end"
-            color="inherit"
-            onClick={handleMenuOpen}
-          >
+          <IconButton size="large" edge="end" color="inherit" onClick={handleMenuOpen}>
             <AccountCircle />
           </IconButton>
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-            <MenuItem onClick={() => handleAction("forgetPassword")}>
-              Forget Password
-            </MenuItem>
-            <MenuItem onClick={() => handleAction("changePassword")}>
-              Change Password
-            </MenuItem>
-            <MenuItem onClick={() => handleAction("logout")}>
-              Logout
-            </MenuItem>
+            <MenuItem onClick={() => handleAction("forgetPassword")}>Forget Password</MenuItem>
+            <MenuItem onClick={() => handleAction("changePassword")}>Change Password</MenuItem>
+            <MenuItem onClick={() => handleAction("logout")}>Logout</MenuItem>
           </Menu>
         </Box>
       </Toolbar>
@@ -106,10 +89,4 @@ const TopNav = ({ items = [], activeTop, setActiveTop }) => {
 };
 
 export default TopNav;
-
-
-
-
-
-
 

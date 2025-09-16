@@ -19,6 +19,8 @@ import { loginUser } from "../../../redux/Slice/authslice";
 import ForgotPasswordModal from "../../Dash/Forgetpass";
 import "../../../App.css";
 
+const roleMap = { 1: "admin", 2: "hr", 3: "manager", 4: "user" };
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,7 +36,9 @@ const Login = () => {
   useEffect(() => {
     if (token && user) {
       const roleId = user.role_id;
-      if (roleId === 1) navigate("/admin/dashboard");
+      // Store the role as string in localStorage for Sidebar usage
+      localStorage.setItem("userRole", roleMap[roleId] || "user");
+      if (roleId === 1) navigate("/admin");
       else if (roleId === 2) navigate("/hr/dashboard");
       else if (roleId === 3) navigate("/manager/dashboard");
       else navigate("/");
@@ -50,20 +54,30 @@ const Login = () => {
       alert("Please enter email and password");
       return;
     }
-
     dispatch(loginUser(formData))
       .unwrap()
       .then((res) => {
         alert(`Welcome ${res.user.name || formData.email}`);
 
-        // ✅ Save token properly
+        // Save token
         if (rememberMe) {
           localStorage.setItem("token", res.token);
         } else {
           sessionStorage.setItem("token", res.token);
         }
+        // Save user role as string for role-based sidebar rendering
+        localStorage.setItem("userRole", roleMap[res.user.role_id] || "user");
+
+        // Redirect based on role
+        if (res.user.role_id === 1) navigate("/admin");
+        else if (res.user.role_id === 2) navigate("/hr/dashboard");
+        else if (res.user.role_id === 3) navigate("/manager/dashboard");
+        else navigate("/");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        localStorage.removeItem("userRole");
+        alert(err);
+      });
   };
 
   const handleForgotPassword = () => {
@@ -243,7 +257,6 @@ const Login = () => {
           </Link>
         </Typography>
       </Box>
-
 
       <ForgotPasswordModal
         open={openForgot}

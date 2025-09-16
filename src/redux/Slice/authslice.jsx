@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 // REGISTER USER
 export const registerUser = createAsyncThunk(
@@ -14,16 +15,14 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+// LOGIN USER
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post("http://localhost:5000/auth/login", { email, password });
 
-      // Save token to localStorage immediately
+      // Save token
       localStorage.setItem("token", res.data.token);
 
       return res.data;
@@ -33,9 +32,22 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// --- Load token from storage and decode user ---
+const tokenFromStorage = localStorage.getItem("token");
+let userFromToken = null;
+
+if (tokenFromStorage) {
+  try {
+    userFromToken = jwtDecode(tokenFromStorage);
+  } catch (err) {
+    console.error("Invalid token in storage:", err);
+    localStorage.removeItem("token");
+  }
+}
+
 const initialState = {
-  user: null,
-  token: localStorage.getItem("token") || null, // load from storage if available
+  user: userFromToken,  // decoded user from token
+  token: tokenFromStorage || null,
   loading: false,
   error: null,
 };
@@ -73,8 +85,14 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
         state.token = action.payload.token;
+
+        try {
+          state.user = jwtDecode(action.payload.token);
+        } catch (err) {
+          console.error("Failed to decode token:", err);
+          state.user = null;
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

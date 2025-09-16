@@ -1,14 +1,21 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import AdminDashboard from "../../views/Admin/Admindash";
+import MainRouter from "./MainRouter";
+import Goaly from "../../views/Admin/Goaly";
+
 
 const AdminRouter = () => {
   return (
     <Routes>
-      <Route path="dashboard" element={<AdminDashboard />} />
-      {/* More admin-only routes here */}
+      {/* Admin-only pages */}
+       <Route path="/Goals/admin/request" element={<Goaly />} />
+      
+      {/* Catch-all */}
+      <Route path="*" element={<MainRouter />} />
     </Routes>
   );
 };
 
 export default AdminRouter;
+
+

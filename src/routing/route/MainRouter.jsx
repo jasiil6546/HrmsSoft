@@ -10,6 +10,8 @@ import LeaveSummary from "../../views/leave/LeaveSummary";
 import LeaveBalance from "../../views/leave/LeaveBalance";
 import LeaveRequests from "../../views/leave/LeaveRequests";
 import Holidays from "../../views/leave/Holidays";
+import Goals from "../../views/Goals/Goalsm.jsx";
+import Goaly from "../../views/Admin/Goaly.jsx";
 
 
 const MainRouter = () => {
@@ -28,6 +30,10 @@ const MainRouter = () => {
         <Route path="leave/balance" element={<LeaveBalance />} />
         <Route path="leave/request" element={<LeaveRequests />} />
         <Route path="leave/Holiday" element={<Holidays />} />
+
+
+        <Route path="Goals/w" element={<Goals />} />
+        <Route path="Goals/admin/request" element={<Goaly />} />
         
         <Route path="logout" element={<Logout />} />
       </Route>
