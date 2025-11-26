@@ -66,39 +66,39 @@ export const completeGoalWithFeedback = createAsyncThunk("goals/completeGoalWith
   }
 });
 
-const goalSlice = createSlice({
-  name: "goals",
-  initialState: { goals: [], status: "idle", error: null },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchGoals.pending, (state) => { state.status = "loading"; })
-      .addCase(fetchGoals.fulfilled, (state, action) => { state.status = "succeeded"; state.goals = action.payload; })
-      .addCase(fetchGoals.rejected, (state, action) => { state.status = "failed"; state.error = action.payload; })
-      .addCase(addGoal.fulfilled, (state, action) => { state.goals.push(action.payload); })
-      .addCase(updateGoal.fulfilled, (state, action) => {
-        const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
-        if (idx !== -1) state.goals[idx] = { ...state.goals[idx], ...action.payload.updates };
-      })
-    
-      .addCase(deleteGoal.fulfilled, (state, action) => {
-        state.goals = state.goals.filter(g => g.goalId !== action.payload);
-      })
-      .addCase(deleteGoal.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-      .addCase(updateGoalStatus.fulfilled, (state, action) => {
-        const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
-        if (idx !== -1) state.goals[idx].status = action.payload.newStatus;
-      })
-      .addCase(completeGoalWithFeedback.fulfilled, (state, action) => {
-        const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
-        if (idx !== -1) {
-          state.goals[idx].rating = action.payload.rating;
-          state.goals[idx].feedback = action.payload.feedback;
-        }
-      });
-  }
-});
+  const goalSlice = createSlice({
+    name: "goals",
+    initialState: { goals: [], status: "idle", error: null },
+    reducers: {},
+    extraReducers: (builder) => {
+      builder
+        .addCase(fetchGoals.pending, (state) => { state.status = "loading"; })
+        .addCase(fetchGoals.fulfilled, (state, action) => { state.status = "succeeded"; state.goals = action.payload; })
+        .addCase(fetchGoals.rejected, (state, action) => { state.status = "failed"; state.error = action.payload; })
+        .addCase(addGoal.fulfilled, (state, action) => { state.goals.push(action.payload); })
+        .addCase(updateGoal.fulfilled, (state, action) => {
+          const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
+          if (idx !== -1) state.goals[idx] = { ...state.goals[idx], ...action.payload.updates };
+        })
+      
+        .addCase(deleteGoal.fulfilled, (state, action) => {
+          state.goals = state.goals.filter(g => g.goalId !== action.payload);
+        })
+        .addCase(deleteGoal.rejected, (state, action) => {
+          state.error = action.payload;
+        })
+        .addCase(updateGoalStatus.fulfilled, (state, action) => {
+          const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
+          if (idx !== -1) state.goals[idx].status = action.payload.newStatus;
+        })
+        .addCase(completeGoalWithFeedback.fulfilled, (state, action) => {
+          const idx = state.goals.findIndex(g => g.goalId === action.payload.goalId);
+          if (idx !== -1) {
+            state.goals[idx].rating = action.payload.rating;
+            state.goals[idx].feedback = action.payload.feedback;
+          }
+        });
+    }
+  });
 
 export default goalSlice.reducer;
