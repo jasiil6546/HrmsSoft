@@ -1,12 +1,60 @@
-# React + Vite
+# HRMS Dashboard & Role-Based Access System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A complete Human Resource Management System built with **React**, **Node.js**, **Express.js**, and **MySQL**, featuring secure authentication, role-based access control, attendance tracking, leave management, goals tracking, and calendar-based views.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 🔐 Authentication & Security
+- Login with JWT authentication
+- Password reset via email/OTP
+- Secure role-based authorization (Admin, HR, Manager, Employee)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 👥 Role Management
+- Add, edit, and delete roles
+- Permission-based component rendering
+- Admin-only control panel
+
+### 🕒 Attendance Module
+- Check-in/check-out system
+- Weekly work schedule chart
+- Department and reporting structure display
+
+### 📅 Calendar View
+- Monthly attendance calendar
+- Indicators for present, absent, remote, and holidays
+- Scrollable multi-month view
+
+### 📝 Leave Tracker
+- Leave Summary
+- Leave Balance
+- Leave Requests (Approval, Reject, Pending)
+- Holidays List with Add/Edit/Delete
+
+### 🎯 Goals / W-Tracker
+- Add, edit, delete personal goals
+- Ratings, feedback, and status updates
+- Data Grid with pagination
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**  
+- React.js  
+- Material UI  
+- Recharts / Chart Libraries  
+
+**Backend:**  
+- Node.js  
+- Express.js  
+- JWT, Bcrypt  
+
+**Database:**  
+- MySQL  
+
+---
+
+## 📌 Folder Structure
+
